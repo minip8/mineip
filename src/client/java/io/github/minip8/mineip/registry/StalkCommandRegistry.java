@@ -2,7 +2,7 @@ package io.github.minip8.mineip.registry;
 
 
 import com.mojang.brigadier.arguments.StringArgumentType;
-import io.github.minip8.mineip.util.StalkManagerUtil;
+import io.github.minip8.mineip.util.StalkUtil;
 import io.github.minip8.mineip.util.UUIDUtil;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
@@ -43,9 +43,9 @@ public class StalkCommandRegistry {
                                     }
 
                                     // Execute toggle in your specific StalkManagerUtil
-                                    StalkManagerUtil.toggleStalk(targetUUID);
+                                    StalkUtil.toggleStalk(targetUUID);
 
-                                    boolean isStalking = StalkManagerUtil.isStalked(targetUUID);
+                                    boolean isStalking = StalkUtil.isStalked(targetUUID);
 
                                     // Success Feedback
                                     context.getSource().sendFeedback(Component.literal(

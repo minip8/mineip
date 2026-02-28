@@ -1,6 +1,6 @@
 package io.github.minip8.mineip.mixin.client;
 
-import io.github.minip8.mineip.util.StalkManagerUtil;
+import io.github.minip8.mineip.util.StalkUtil;
 import org.spongepowered.asm.mixin.Mixin;
 
 import net.minecraft.world.entity.Entity;
@@ -17,7 +17,7 @@ public class EntityClientMixin {
         Entity entity = (Entity) (Object) this;
 
         // Check if the entity is a player
-        if (entity instanceof Player player && StalkManagerUtil.isStalked(player.getGameProfile().id())) {
+        if (entity instanceof Player player && StalkUtil.isStalked(player.getGameProfile().id())) {
             // Force the glowing outline to be true
             cir.setReturnValue(true);
         }
