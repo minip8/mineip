@@ -3,9 +3,9 @@
 	"id": "mineip",
 	"version": "${version}",
 	"name": "mineip",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A mod of fun, miscellaneous features!",
 	"authors": [
-		"Me!"
+		"minip8"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
