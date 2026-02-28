@@ -3,7 +3,8 @@
 	"package": "io.github.minip8.mineip.mixin.client",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
-		"ExampleClientMixin"
+		"ExampleClientMixin",
+		"EntityClientMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
