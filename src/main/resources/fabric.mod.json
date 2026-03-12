@@ -19,7 +19,8 @@
 			"io.github.minip8.mineip.Mineip"
 		],
 		"client": [
-			"io.github.minip8.mineip.MineipClient"
+			"io.github.minip8.mineip.MineipClient",
+			"io.github.minip8.mineip.util.RenderUtil"
 		]
 	},
 	"mixins": [
