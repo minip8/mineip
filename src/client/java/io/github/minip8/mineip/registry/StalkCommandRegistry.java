@@ -16,42 +16,69 @@ public class StalkCommandRegistry {
 
     public static void register() {
         ClientCommandRegistrationCallback.EVENT.register(
-                (dispatcher, registryAccess) -> dispatcher.register(ClientCommandManager.literal("stalk")
-                        .then(ClientCommandManager.argument("player", StringArgumentType.string())
-                                // Adds auto-completion for players currently in the Tab list
-                                .suggests((context, builder) -> {
-                                    Minecraft client = Minecraft.getInstance();
-                                    if (client.getConnection() != null) {
-                                        for (PlayerInfo info : client.getConnection().getOnlinePlayers()) {
-                                            builder.suggest(info.getProfile().name());
-                                        }
-                                    }
-                                    return builder.buildFuture();
-                                }).executes(context -> {
-                                    String targetName = StringArgumentType.getString(context, "player");
-                                    Minecraft client = Minecraft.getInstance();
+                (dispatcher, registryAccess) -> dispatcher.register(
+                        ClientCommandManager.literal("stalk")
+                                .then(ClientCommandManager.argument("player",
+                                                StringArgumentType.string())
+                                        // Adds auto-completion for players
+                                        // currently in the Tab list
+                                        .suggests((context, builder) -> {
+                                            Minecraft client =
+                                                    Minecraft.getInstance();
+                                            if (client.getConnection() !=
+                                                    null) {
+                                                for (PlayerInfo info :
+                                                        client.getConnection()
+                                                        .getOnlinePlayers()) {
+                                                    builder.suggest(
+                                                            info.getProfile()
+                                                                    .name());
+                                                }
+                                            }
+                                            return builder.buildFuture();
+                                        }).executes(context -> {
+                                            String targetName =
+                                                    StringArgumentType.getString(
+                                                    context, "player");
+                                            Minecraft client =
+                                                    Minecraft.getInstance();
 
-                                    if (client.getConnection() == null) return 0;
+                                            if (client.getConnection() == null)
+                                                return 0;
 
-                                    UUID targetUUID = UUIDUtil.nameToUUID(targetName,
-                                            client.getConnection().getOnlinePlayers());
+                                            UUID targetUUID =
+                                                    UUIDUtil.nameToUUID(
+                                                    targetName,
+                                                    client.getConnection()
+                                                            .getOnlinePlayers());
 
-                                    if (targetUUID == null) {
-                                        context.getSource().sendFeedback(Component.literal(
-                                                "§c" + targetName + " is not a" + " valid player on this server!"));
-                                        return 0;
-                                    }
+                                            if (targetUUID == null) {
+                                                context.getSource()
+                                                        .sendFeedback(
+                                                                Component.literal(
+                                                                        "§c" +
+                                                                                targetName +
+                                                                                " is not a" +
+                                                                                " valid player on this server!"));
+                                                return 0;
+                                            }
 
-                                    // Execute toggle in your specific StalkManagerUtil
-                                    StalkUtil.toggleStalk(targetUUID);
+                                            // Execute toggle in your
+                                            // specific StalkManagerUtil
+                                            StalkUtil.toggleStalk(targetUUID);
 
-                                    boolean isStalking = StalkUtil.isStalked(targetUUID);
+                                            boolean isStalking =
+                                                    StalkUtil.isStalked(
+                                                    targetUUID);
 
-                                    // Success Feedback
-                                    context.getSource().sendFeedback(Component.literal(
-                                            (isStalking ? "§aStarted stalking: §f" : "§cStopped stalking: §f") + targetName));
+                                            // Success Feedback
+                                            context.getSource().sendFeedback(
+                                                    Component.literal(
+                                                            (isStalking ?
+                                                                    "§aStarted stalking: §f" : "§cStopped stalking: §f") +
+                                                                    targetName));
 
-                                    return 1;
-                                }))));
+                                            return 1;
+                                        }))));
     }
 }
