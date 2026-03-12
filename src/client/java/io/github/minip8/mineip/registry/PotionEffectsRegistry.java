@@ -1,6 +1,5 @@
 package io.github.minip8.mineip.registry;
 
-import io.github.minip8.mineip.MineipClient;
 import io.github.minip8.mineip.util.PotionEffectsUtil;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
@@ -12,7 +11,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 
-import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class PotionEffectsRegistry {
@@ -68,7 +66,7 @@ public class PotionEffectsRegistry {
                                                     Component.literal(
                                                             effectDisableSuccess ? String.format(
                                                                     "%s is now disabled!",
-                                                                    mobEffect.toString()) : "No effects changed!"));
+                                                                    mobEffect) : "No effects changed!"));
                                             return 1;
                                         }))));
     }
@@ -99,7 +97,7 @@ public class PotionEffectsRegistry {
                                                     Component.literal(
                                                             effectEnableSuccess ? String.format(
                                                                     "%s is now enabled!",
-                                                                    mobEffect.toString()) : "No effects changed!"));
+                                                                    mobEffect) : "No effects changed!"));
                                             return 1;
                                         }))));
     }
